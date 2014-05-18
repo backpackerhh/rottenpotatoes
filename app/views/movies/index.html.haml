@@ -1,14 +1,16 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
 
+= render 'filter_form', all_ratings: @all_ratings, ratings: @ratings
+
 %table#movies
   %thead
     %tr
       %th{ class: highlight_if_current_column(:title) }
-        = link_to 'Movie Title', { sort_by: :title }, id: 'title_header'
+        = link_to 'Movie Title', { sort_by: :title, ratings: params[:ratings] }, id: 'title_header'
       %th Rating
       %th{ class: highlight_if_current_column(:release_date) }
-        = link_to 'Release Date', { sort_by: :release_date }, id: 'release_date_header'
+        = link_to 'Release Date', { sort_by: :release_date, ratings: params[:ratings] }, id: 'release_date_header'
       %th More Info
   %tbody
     - @movies.each do |movie|
