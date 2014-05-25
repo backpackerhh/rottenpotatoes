@@ -7,16 +7,24 @@ class MoviesController < ApplicationController
   end
 
   def index
-    session[:sort_by] = params[:sort_by] if params[:sort_by]
-    session[:ratings] = params[:ratings] if params[:ratings]
-
     @all_ratings = Movie.all_ratings
-    @ratings = session[:ratings] ? session[:ratings].keys : @all_ratings
 
-    if !params[:ratings] && session[:ratings]
-      flash.keep
-      redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
+    session[:sort_by] = params[:sort_by] if params[:sort_by]
+
+    if params[:ratings]
+      session[:ratings] = params[:ratings]
+      @ratings = session[:ratings].keys
+    else
+      if params[:utf8] # Form is submitted with all ratings unchecked
+        @ratings = []
+      elsif session[:ratings]
+        flash.keep
+        redirect_to movies_path(sort_by: session[:sort_by], ratings: session[:ratings])
+      else
+        @ratings = @all_ratings
+      end
     end
+
     @movies = Movie.order(session[:sort_by]).where('rating IN (?)', @ratings)
   end
 
