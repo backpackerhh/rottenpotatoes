@@ -75,5 +75,7 @@ Then /^I should see (none|all) of the movies$/ do |quantity|
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-  pending
+  titles = page.all('table#movies tbody tr td[1]').map(&:text)
+
+  assert titles.index(e1) < titles.index(e2), "expected '#{e1}' to appears before '#{e2}' in the page"
 end

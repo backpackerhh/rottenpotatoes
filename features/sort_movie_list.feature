@@ -18,14 +18,17 @@ Background: movies have been added to database
   | The Incredibles         | PG     | 5-Nov-2004   |
   | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
   | Chicken Run             | G      | 21-Jun-2000  |
+  | American Pie            | NC-17  | 9-Jul-1999   |
 
   And I am on the RottenPotatoes home page
 
+@ok
 Scenario: sort movies alphabetically
   When I follow "Movie Title"
-  # your steps here
+  Then I should see "American Pie" before "The Terminator"
 
+@ok
 Scenario: sort movies in increasing order of release date
   When I follow "Release Date"
-  # your steps here
+  Then I should see "Raiders of the Lost Ark" before "Amelie"
 
