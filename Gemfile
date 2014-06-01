@@ -23,13 +23,16 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'annotate', require: false
+  gem 'simplecov', require: false
 end
 
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :production do

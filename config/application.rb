@@ -56,5 +56,8 @@ module Rottenpotatoes
     
     #Prevent failure on Heroku assets precompile
     config.assets.initialize_on_precompile = false
+
+    # Enforce available locales
+    I18n.config.enforce_available_locales = false
   end
 end
