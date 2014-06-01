@@ -1,0 +1,17 @@
+= form_for movie do |f|
+  = f.label :title
+  = f.text_field :title
+
+  = f.label :director
+  = f.text_field :director
+
+  = f.label :rating
+  = f.select :rating, all_ratings
+
+  = f.label :release_date, 'Released On'
+  = f.date_select :release_date, start_year: Date.today.year - 120, end_year: Date.today.year + 5
+
+  = f.label :description
+  = f.text_area :description, size: '50x5'
+  %br
+  = f.submit submit_text

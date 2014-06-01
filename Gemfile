@@ -23,7 +23,9 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '3.0.1'
+  gem 'annotate', require: false
+  gem 'simplecov', require: false
 end
 
 group :test do
